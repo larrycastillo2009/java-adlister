@@ -5,21 +5,24 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "HelloWorldServlet", urlPatterns = "/hello")
-public class HelloWorldServlet extends HttpServlet {
+@WebServlet(name = "CounterServlet", urlPatterns = "/counter")
+public class CounterServlet extends HttpServlet {
+    private int counter = 0;
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         res.setContentType("text/html");
 
-        String name = req.getParameter("name");
+        counter += 1;
 
-        if(name == null){
-            name = "world";
-        }
 
-        String content = "<h1>Hello " + name + "!</h1>";
+        String content = "<h1>" + counter + "</h1>";
+
 
         PrintWriter out = res.getWriter();
         out.println(content);
 
     }
 }
+
+
