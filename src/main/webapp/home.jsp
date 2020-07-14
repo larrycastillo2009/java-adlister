@@ -16,5 +16,7 @@
 <body>
 <h1>Hello, <%=firstname%> <%=lastname%></h1>
 
+<%@ include file="aboutme.jsp"%>
+
 </body>
 </html>
