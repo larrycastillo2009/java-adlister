@@ -16,6 +16,10 @@
 <body>
 <h1>Hello, <%=firstname%> <%=lastname%></h1>
 
+<form action="/profile.jsp" method="post">
+    <button></button>
+</form>
+
 <%@ include file="aboutme.jsp"%>
 
 </body>
