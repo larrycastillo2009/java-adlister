@@ -1,18 +1,18 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Create A Product</title>
+    <title>View ads</title>
 </head>
 <body>
-<h1>Create A Product</h1>
-<form action="/products/create" method="post">
-    <label for="name">Name</label>
-    <input name="name" id="name" type="text">
-    <br />
-    <label for="price">Price</label>
-    <input name="price" id="price" type="text">
-    <br />
-    <input type="submit">
-</form>
+<h1>Here are all the products:</h1>
+
+<c:forEach var="ads" items="${ads}">
+    <div>
+        <h2>${ads.title}</h2>
+        <p>Description: ${ads.description}</p>
+    </div>
+</c:forEach>
+
 </body>
 </html>
