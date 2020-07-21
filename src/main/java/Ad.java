@@ -1,8 +1,8 @@
 public class Ad {
     private long id;
     private long userId;
-    private String title;
-    private String description;
+    private static String title;
+    private static String description;
 
     public Ad(long id, long userId, String title, String description) {
         this.id = id;
@@ -33,7 +33,7 @@ public class Ad {
         this.userId = userId;
     }
 
-    public String getTitle() {
+    public static String getTitle() {
         return title;
     }
 
@@ -41,7 +41,7 @@ public class Ad {
         this.title = title;
     }
 
-    public String getDescription() {
+    public static String getDescription() {
         return description;
     }
 
