@@ -1,0 +1,10 @@
+DROP DATABASE IF EXISTS adlister_db ;
+CREATE DATABASE adlister_db;
+USE adlister_db;
+
+CREATE TABLE ads (
+    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    title VARCHAR(50) NOT NULL,
+    description VARCHAR(250) NOT NULL
+);
