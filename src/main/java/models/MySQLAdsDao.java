@@ -1,24 +1,33 @@
+package models;
+
 import com.mysql.cj.jdbc.Driver;
+import models.Ad;
+import models.Ads;
+import models.Config;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySQLAdsDao implements Ads{
+public class MySQLAdsDao implements Ads {
 
     private Connection connection;
 
     @Override
     public List<Ad> all() {
-        List<Ad> ads =new ArrayList<>();
+        List<Ad> ads = new ArrayList<>();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM contacts");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM ads");
             while(rs.next()) {
+                System.out.println(rs.getLong("id"));
+                System.out.println(rs.getString("title"));
+                System.out.println(rs.getString("description"));
                 ads.add(new Ad(
                         rs.getLong("id"),
-                        rs.getString("name"),
-                        rs.getString("phone_number")
+                        rs.getInt("user_id"),
+                        rs.getString("title"),
+                        rs.getString("description")
                 ));
             }
         } catch (SQLException throwables) {
@@ -32,7 +41,7 @@ public class MySQLAdsDao implements Ads{
         long lastInsertedId = 0;
         try {
             Statement stmt = connection.createStatement();
-            stmt.executeUpdate(String.format("INSERT INTO contacts (name, description) VALUES ('%s', '%s')", Ad.getTitle(), Ad.getDescription()), Statement.RETURN_GENERATED_KEYS);
+            stmt.executeUpdate(String.format("INSERT INTO ads (name, description) VALUES ('%s', '%s')", Ad.getTitle(), Ad.getDescription()), Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             lastInsertedId =  rs.getLong(1);
