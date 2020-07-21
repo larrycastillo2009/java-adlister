@@ -2,9 +2,16 @@ DROP DATABASE IF EXISTS adlister_db ;
 CREATE DATABASE adlister_db;
 USE adlister_db;
 
+CREATE TABLE users(
+    user_id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(250) NOT NULL,
+    password VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE ads (
     id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
+    user_id INT NOT NULL FOREIGN KEY REFERENCES users(user_id),
     title VARCHAR(50) NOT NULL,
     description VARCHAR(250) NOT NULL
 );
