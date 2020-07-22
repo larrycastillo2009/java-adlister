@@ -3,8 +3,8 @@ package models;
 public class Ad {
     private long id;
     private long userId;
-    private static String title;
-    private static String description;
+    private String title;
+    private String description;
 
     public Ad(long id, long userId, String title, String description) {
         this.id = id;
@@ -35,7 +35,7 @@ public class Ad {
         this.userId = userId;
     }
 
-    public static String getTitle() {
+    public String getTitle() {
         return title;
     }
 
@@ -43,7 +43,7 @@ public class Ad {
         this.title = title;
     }
 
-    public static String getDescription() {
+    public String getDescription() {
         return description;
     }
 
