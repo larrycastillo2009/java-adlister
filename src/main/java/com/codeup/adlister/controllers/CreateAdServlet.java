@@ -23,17 +23,20 @@ public class CreateAdServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         User user = DaoFactory.getUsersDao().findByUsername(username);
-        if(BCrypt.checkpw(request.getParameter("password"), user.getPassword())) {
+//        boolean validAttempt = BCrypt.checkpw(password, user.getPassword());
+
+        if(password == null) {
+            response.sendRedirect("/login");
+            return;
+        } else{
             Ad ad = new Ad(
-                    1, // for now we'll hardcode the user id
+                    user.getId(), // for now we'll hardcode the user id
                     request.getParameter("title"),
                     request.getParameter("description")
             );
             DaoFactory.getAdsDao().insert(ad);
             response.sendRedirect("/ads");
-        } else{
-            response.sendRedirect("/login");
-            return;
+
         }
     }
 }
